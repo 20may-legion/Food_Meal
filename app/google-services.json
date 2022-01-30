@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "107825071410",
+    "project_id": "food-meal-f3717",
+    "storage_bucket": "food-meal-f3717.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:107825071410:android:9cf7b8729b0d32e91f832b",
+        "android_client_info": {
+          "package_name": "com.krupal.foodmeal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "107825071410-d3p5bs63jja6bul9j9hjtth263f3cimg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.krupal.foodmeal",
+            "certificate_hash": "2f9c7d17a3e0eb4d3e906e05493a4c7017bcd91f"
+          }
+        },
+        {
+          "client_id": "107825071410-6hgldk0c3e9s6paovujenlqe6jg0ehig.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLlXDC4fB-IiUjHz0QQpd9Ti8s2q969Qo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "107825071410-6hgldk0c3e9s6paovujenlqe6jg0ehig.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
