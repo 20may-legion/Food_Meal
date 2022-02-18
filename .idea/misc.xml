@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android_Studio_Projects/FoodMeal/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Android_Studio_Projects/FoodMeal/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Android_Studio_Projects/FoodMeal/app/src/main/res/layout/fragment_login.xml" value="0.12280701754385964" />
         <entry key="..\:/Android_Studio_Projects/FoodMeal/app/src/main/res/layout/fragment_registration.xml" value="0.11955420466058764" />
       </map>
     </option>

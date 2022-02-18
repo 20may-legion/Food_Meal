@@ -31,9 +31,9 @@ import butterknife.ButterKnife;
 
 
 public class Registration_Fragment extends Fragment {
-    private FirebaseAuth firebaseAuth;
     Authentication parent_activity;
-    FirebaseFirestore firestore;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore firestore;
     @BindView(R.id.have_acc_TV)
     TextView have_acc;
 
@@ -112,7 +112,7 @@ public class Registration_Fragment extends Fragment {
                 firestore.collection("User").document(uid).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        showToast("user registration successful");
+                        showToast("user registration successful with user id " + authResult.getUser().getUid());
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
