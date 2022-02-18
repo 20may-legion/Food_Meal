@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/vages"
+    android:orientation="vertical"
+    tools:context=".fragments.login_Fragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="50dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/quaternary_light"
+            android:elevation="50dp"
+            app:cardCornerRadius="25dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@color/quaternary_light"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingVertical="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/text_view_bg_dark"
+                    android:paddingHorizontal="30dp"
+                    android:paddingVertical="10dp"
+                    android:text="user registration"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white_text"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/fname_ET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:drawableStart="@drawable/ic_baseline_account_circle_24"
+                    android:drawableLeft="@drawable/ic_baseline_account_circle_24"
+                    android:hint="Enter First Name"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:textColor="@color/white_text"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/lname_ET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/edit_text_bg"
+
+                    android:drawableStart="@drawable/ic_baseline_account_circle_24"
+                    android:drawableLeft="@drawable/ic_baseline_account_circle_24"
+                    android:hint="Enter Last Name"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:textColor="@color/white_text"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/mobile_ET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:drawableStart="@drawable/ic_baseline_phone_iphone_24"
+                    android:drawableLeft="@drawable/ic_baseline_phone_iphone_24"
+                    android:hint="Enter Mobile Number"
+                    android:inputType="phone"
+                    android:maxLength="10"
+                    android:padding="10dp"
+                    android:textColor="@color/white_text"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/email_ET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:drawableStart="@drawable/ic_baseline_mail_24"
+                    android:drawableLeft="@drawable/ic_baseline_mail_24"
+                    android:hint="Enter Email ID"
+                    android:inputType="textEmailAddress"
+                    android:padding="10dp"
+                    android:textColor="@color/white_text"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/password_ET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:drawableStart="@drawable/ic_baseline_lock_24"
+                    android:drawableLeft="@drawable/ic_baseline_lock_24"
+                    android:hint="Enter password"
+                    android:inputType="textPassword"
+                    android:padding="10dp"
+                    android:textColor="@color/white_text"
+                    android:textSize="15sp" />
+
+
+                <com.google.android.material.button.MaterialButton
+                   android:id="@+id/register_BT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:backgroundTint="@color/tertiary_light"
+                    android:text="Register"
+                    android:textColor="@color/quaternary_light"
+                    app:cornerRadius="25dp" />
+
+                <TextView
+                    android:id="@+id/have_acc_TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingHorizontal="25dp"
+                    android:paddingVertical="5dp"
+                    android:text="Already have an account?"
+                    android:textColor="@color/tertiary_light"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</LinearLayout>
