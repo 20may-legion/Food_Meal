@@ -21,15 +21,12 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                //todo remove home activity from splash
                 Intent i=new Intent(SplashScreen.this,
                         Authentication.class);
-                //Intent is used to switch from one activity to another.
-
+//                Intent i = new Intent(SplashScreen.this , HomeActivity.class);
                 startActivity(i);
-                //invoke the SecondActivity.
-
                 finish();
-                //the current activity will get finished.
             }
         }, SPLASH_SCREEN_TIME_OUT);
     }

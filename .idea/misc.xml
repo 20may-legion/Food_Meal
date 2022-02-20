@@ -3,10 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android_Studio_Projects/FoodMeal/app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="..\:/Android_Studio_Projects/FoodMeal/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.1" />
+        <entry key="..\:/Android_Studio_Projects/FoodMeal/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1" />
+        <entry key="..\:/Android_Studio_Projects/FoodMeal/app/src/main/res/layout/activity_home.xml" value="0.12" />
         <entry key="..\:/Android_Studio_Projects/FoodMeal/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Android_Studio_Projects/FoodMeal/app/src/main/res/layout/fragment_login.xml" value="0.12280701754385964" />
+        <entry key="..\:/Android_Studio_Projects/FoodMeal/app/src/main/res/layout/fragment_home.xml" value="0.12" />
+        <entry key="..\:/Android_Studio_Projects/FoodMeal/app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="..\:/Android_Studio_Projects/FoodMeal/app/src/main/res/layout/fragment_registration.xml" value="0.11955420466058764" />
+        <entry key="..\:/Android_Studio_Projects/FoodMeal/app/src/main/res/menu/bottom_nav_menu.xml" value="0.24739583333333334" />
       </map>
     </option>
   </component>

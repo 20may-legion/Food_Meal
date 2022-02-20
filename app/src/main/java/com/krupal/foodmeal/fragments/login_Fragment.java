@@ -1,6 +1,7 @@
 package com.krupal.foodmeal.fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.krupal.foodmeal.Authentication;
+import com.krupal.foodmeal.HomeActivity;
 import com.krupal.foodmeal.R;
 
 import java.util.Objects;
@@ -92,6 +94,9 @@ public class login_Fragment extends Fragment {
                 @Override
                 public void onSuccess(AuthResult authResult) {
                     showToast("Login successful with user id : "+ authResult.getUser().getUid());
+                    Intent i = new Intent(parent_activity, HomeActivity.class);
+                    startActivity(i);
+                    parent_activity.finish();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
