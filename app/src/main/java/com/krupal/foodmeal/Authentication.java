@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.google.firebase.FirebaseApp;
-import com.krupal.foodmeal.fragments.login_Fragment;
+import com.krupal.foodmeal.Fragments.login_Fragment;
 
 public class Authentication extends AppCompatActivity {
 

@@ -28,6 +28,7 @@
         android:orientation="vertical">
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/make_dish_BT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
@@ -41,6 +42,7 @@
             app:cornerRadius="20dp" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/explore_recipes_BT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"

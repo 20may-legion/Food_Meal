@@ -1,6 +1,5 @@
-package com.krupal.foodmeal.fragments;
+package com.krupal.foodmeal.Fragments;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -82,6 +81,7 @@ public class login_Fragment extends Fragment {
         login_BT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                showToast("login button pressed");
                 loginwithEmailAndPassword(email_ET.getText().toString().trim(),password_ET.getText().toString().trim());
             }
         });

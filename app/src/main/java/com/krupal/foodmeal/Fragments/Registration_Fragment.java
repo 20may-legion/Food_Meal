@@ -1,4 +1,4 @@
-package com.krupal.foodmeal.fragments;
+package com.krupal.foodmeal.Fragments;
 
 import android.os.Bundle;
 
@@ -17,7 +17,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.krupal.foodmeal.Authentication;
 import com.krupal.foodmeal.R;
@@ -74,6 +73,7 @@ public class Registration_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_registration, container, false);
         ButterKnife.bind(this, view);
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).hide();
+
         FirebaseApp.initializeApp(parent_activity.getApplicationContext());
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
@@ -89,7 +89,9 @@ public class Registration_Fragment extends Fragment {
         register_BT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registerUserwithEmailandPassword(email_ET.getText().toString().trim(),password_ET.getText().toString().trim());
+//                showToast("register button pressed");
+
+               registerUserwithEmailandPassword(email_ET.getText().toString().trim(),password_ET.getText().toString().trim());
             }
         });
 
@@ -132,6 +134,5 @@ public class Registration_Fragment extends Fragment {
 
     private void showToast(String message) {
         Toast.makeText(parent_activity, message, Toast.LENGTH_LONG).show();
-
     }
 }

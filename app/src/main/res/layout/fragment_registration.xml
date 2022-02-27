@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/vages"
     android:orientation="vertical"
-    tools:context=".fragments.login_Fragment">
+    tools:context=".Fragments.login_Fragment">
 
 
     <LinearLayout
@@ -119,7 +119,6 @@
                     android:padding="10dp"
                     android:textColor="@color/white_text"
                     android:textSize="15sp" />
-
 
                 <com.google.android.material.button.MaterialButton
                    android:id="@+id/register_BT"

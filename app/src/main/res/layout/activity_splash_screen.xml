@@ -34,7 +34,7 @@
         android:layout_gravity="center"
         android:textColor="@color/tertiary_light"
         android:layout_alignParentBottom="true"
-        android:text="made by Krupal in India"
+        android:text="made by Krupal, Harshil and Ganesh"
         android:textSize="15sp" />
 
 </RelativeLayout>

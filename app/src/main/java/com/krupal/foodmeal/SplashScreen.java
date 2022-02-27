@@ -9,6 +9,7 @@ import android.view.WindowManager;
 
 import java.util.Objects;
 
+
 public class SplashScreen extends AppCompatActivity {
     private static int SPLASH_SCREEN_TIME_OUT=3000;
     @Override
@@ -22,9 +23,8 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 //todo remove home activity from splash
-                Intent i=new Intent(SplashScreen.this,
-                        Authentication.class);
-//                Intent i = new Intent(SplashScreen.this , HomeActivity.class);
+//                Intent i=new Intent(SplashScreen.this, Authentication.class);
+                Intent i = new Intent(SplashScreen.this , HomeActivity.class);
                 startActivity(i);
                 finish();
             }
