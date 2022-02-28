@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -37,13 +39,46 @@ public class MakeDishActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     FirebaseUser current_user;
+    ArrayList<String> fruits_list, breads_list, dips_list, drinks_list, non_veg_list, vegetable_list;
+
+    @BindView(R.id.breads_item_RV)
+    RecyclerView rv_breads_tiem;
+
+    @BindView(R.id.breads_title_TV)
+    TextView tv_breads_title;
+
+    @BindView(R.id.dpis_item_RV)
+    RecyclerView rv_dips_tiem;
+
+    @BindView(R.id.dips_title_TV)
+    TextView tv_dips_title;
+
+    @BindView(R.id.drinks_item_RV)
+    RecyclerView rv_drinks_tiem;
+
+    @BindView(R.id.drinks_title_TV)
+    TextView tv_drinks_title;
+
+    @BindView(R.id.fruits_item_RV)
+    RecyclerView rv_fruits_tiem;
+
+    @BindView(R.id.fruits_title_TV)
+    TextView tv_fruits_title;
+
+    @BindView(R.id.nonveg_item_RV)
+    RecyclerView rv_nonveg_tiem;
+
+    @BindView(R.id.nonveg_title_TV)
+    TextView tv_nonveg_title;
+
+    @BindView(R.id.vegetable_item_RV)
+    RecyclerView rv_vegetable_tiem;
+
+    @BindView(R.id.vegetable_title_TV)
+    TextView tv_vegetable_title;
 
 
-    @BindView(R.id.ingredients_item_RV)
-    RecyclerView rv_ingredients_tiem;
-    @BindView(R.id.ingredients_title_TV)
-    TextView tv_ingredients_title;
-
+    ProgressDialog pd;
     private static final String TAG = "DocSnippets";
 
     @Override
@@ -52,44 +87,224 @@ public class MakeDishActivity extends AppCompatActivity {
         setContentView(R.layout.activity_make_dish);
         ButterKnife.bind(this);
         Objects.requireNonNull(getSupportActionBar()).hide();
+        breads_list = new ArrayList<>();
+        dips_list = new ArrayList<>();
+        drinks_list = new ArrayList<>();
+        fruits_list = new ArrayList<>();
+        non_veg_list = new ArrayList<>();
+        vegetable_list = new ArrayList<>();
+
 
         firestore = FirebaseFirestore.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
-        DocumentReference docref = firestore.collection("Ingredients").document("breads");
-        docref.get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            ArrayList<String> ingredients_db = new ArrayList<>();
-                            DocumentSnapshot document = task.getResult();
-                            System.out.println(document.getId() + " => " + document.getData());
-                            for(int i = 1; i<= Objects.requireNonNull(document.getData()).size(); i++){
-                                ingredients_db.add(document.getString(String.valueOf(i)));
-                            }
-                            System.out.println("arraylist "+ ingredients_db.toString());
-                       setAdapterData(document.getId(),ingredients_db);
-                        } else {
-                            System.out.println("Error getting documents.");
-                        }
-                    }
-                });
+        pd = new ProgressDialog(MakeDishActivity.this);
+        new getDataFromDatabase().execute();
 
 
     }
 
-    private void setAdapterData(String title, ArrayList<String> ingredients_list) {
-      tv_ingredients_title.setText(title);
-        IngrediantsAdapter ingrediantsAdapter = new IngrediantsAdapter(getApplicationContext(),ingredients_list);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
-        rv_ingredients_tiem.setLayoutManager(linearLayoutManager);
-        rv_ingredients_tiem.setAdapter(ingrediantsAdapter);
-        rv_ingredients_tiem.setNestedScrollingEnabled(false);
+
+    private void setAdapterData(String title, ArrayList<String> ingredients_list, int adapter_number) {
+        switch (adapter_number) {
+            case 1: {
+                tv_breads_title.setText(title);
+                IngrediantsAdapter ingrediantsAdapter = new IngrediantsAdapter(getApplicationContext(), ingredients_list);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+                rv_breads_tiem.setLayoutManager(linearLayoutManager);
+                rv_breads_tiem.setAdapter(ingrediantsAdapter);
+                rv_breads_tiem.setNestedScrollingEnabled(false);
+                break;
+            }
+            case 2: {
+                tv_dips_title.setText(title);
+                IngrediantsAdapter ingrediantsAdapter = new IngrediantsAdapter(getApplicationContext(), ingredients_list);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+                rv_dips_tiem.setLayoutManager(linearLayoutManager);
+                rv_dips_tiem.setAdapter(ingrediantsAdapter);
+                rv_dips_tiem.setNestedScrollingEnabled(false);
+                break;
+            }
+            case 3: {
+                tv_drinks_title.setText(title);
+                IngrediantsAdapter ingrediantsAdapter = new IngrediantsAdapter(getApplicationContext(), ingredients_list);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+                rv_drinks_tiem.setLayoutManager(linearLayoutManager);
+                rv_drinks_tiem.setAdapter(ingrediantsAdapter);
+                rv_drinks_tiem.setNestedScrollingEnabled(false);
+                break;
+            }
+            case 4: {
+                tv_fruits_title.setText(title);
+                IngrediantsAdapter ingrediantsAdapter = new IngrediantsAdapter(getApplicationContext(), ingredients_list);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+                rv_fruits_tiem.setLayoutManager(linearLayoutManager);
+                rv_fruits_tiem.setAdapter(ingrediantsAdapter);
+                rv_fruits_tiem.setNestedScrollingEnabled(false);
+                break;
+            }
+            case 5: {
+                tv_nonveg_title.setText(title);
+                IngrediantsAdapter ingrediantsAdapter = new IngrediantsAdapter(getApplicationContext(), ingredients_list);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+                rv_nonveg_tiem.setLayoutManager(linearLayoutManager);
+                rv_nonveg_tiem.setAdapter(ingrediantsAdapter);
+                rv_nonveg_tiem.setNestedScrollingEnabled(false);
+                break;
+            }
+            case 6: {
+                tv_vegetable_title.setText(title);
+                IngrediantsAdapter ingrediantsAdapter = new IngrediantsAdapter(getApplicationContext(), ingredients_list);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+                rv_vegetable_tiem.setLayoutManager(linearLayoutManager);
+                rv_vegetable_tiem.setAdapter(ingrediantsAdapter);
+                rv_vegetable_tiem.setNestedScrollingEnabled(false);
+                break;
+            }
+        }
     }
 
     private void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
+    class getDataFromDatabase extends AsyncTask<Void, Void, Void> {
+
+
+        @Override
+        protected void onPreExecute() {
+            pd.setMessage("Getting Your Ingredients....");
+            pd.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+
+            DocumentReference docref = firestore.collection("Ingredients").document("breads");
+            docref.get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                System.out.println(document.getId() + " => " + document.getData());
+                                for (int i = 1; i <= Objects.requireNonNull(document.getData()).size(); i++) {
+                                    breads_list.add(document.getString(String.valueOf(i)));
+                                }
+//                                System.out.println("arraylist " + fruits_list.toString());
+                                setAdapterData(document.getId(), breads_list, 1);
+                                pd.dismiss();
+                            } else {
+                                System.out.println("Error getting documents.");
+                            }
+                        }
+                    });
+
+            docref = firestore.collection("Ingredients").document("dips");
+            docref.get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                System.out.println(document.getId() + " => " + document.getData());
+                                for (int i = 1; i <= Objects.requireNonNull(document.getData()).size(); i++) {
+                                    dips_list.add(document.getString(String.valueOf(i)));
+                                }
+                                //                                System.out.println("arraylist " + fruits_list.toString());
+                                setAdapterData(document.getId(), dips_list, 2);
+                                pd.dismiss();
+                            } else {
+                                System.out.println("Error getting documents.");
+                            }
+                        }
+                    });
+
+            docref = firestore.collection("Ingredients").document("drinks");
+            docref.get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                System.out.println(document.getId() + " => " + document.getData());
+                                for (int i = 1; i <= Objects.requireNonNull(document.getData()).size(); i++) {
+                                    drinks_list.add(document.getString(String.valueOf(i)));
+                                }
+                                                                System.out.println("arraylist " + drinks_list.toString());
+                                setAdapterData(document.getId(), drinks_list, 3);
+                                pd.dismiss();
+                            } else {
+                                System.out.println("Error getting documents.");
+                            }
+                        }
+                    });
+            docref = firestore.collection("Ingredients").document("fruits");
+            docref.get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                System.out.println(document.getId() + " => " + document.getData());
+                                for (int i = 1; i <= Objects.requireNonNull(document.getData()).size(); i++) {
+                                    fruits_list.add(document.getString(String.valueOf(i)));
+                                }
+                                //                                System.out.println("arraylist " + fruits_list.toString());
+                                setAdapterData(document.getId(), fruits_list, 4);
+                                pd.dismiss();
+                            } else {
+                                System.out.println("Error getting documents.");
+                            }
+                        }
+                    });
+            docref = firestore.collection("Ingredients").document("non_veges");
+            docref.get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                System.out.println(document.getId() + " => " + document.getData());
+                                for (int i = 1; i <= Objects.requireNonNull(document.getData()).size(); i++) {
+                                    non_veg_list.add(document.getString(String.valueOf(i)));
+                                }
+                                //                                System.out.println("arraylist " + fruits_list.toString());
+                                setAdapterData(document.getId(), non_veg_list, 5);
+                                pd.dismiss();
+                            } else {
+                                System.out.println("Error getting documents.");
+                            }
+                        }
+                    });
+
+            docref = firestore.collection("Ingredients").document("vegetables");
+            docref.get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                System.out.println(document.getId() + " => " + document.getData());
+                                for (int i = 1; i <= Objects.requireNonNull(document.getData()).size(); i++) {
+                                    vegetable_list.add(document.getString(String.valueOf(i)));
+                                }
+                                //                                System.out.println("arraylist " + fruits_list.toString());
+                                setAdapterData(document.getId(), vegetable_list, 6);
+                                pd.dismiss();
+                            } else {
+                                System.out.println("Error getting documents.");
+                            }
+                        }
+                    });
+
+            return null;
+        }
+    }
+
 }
+
+
+

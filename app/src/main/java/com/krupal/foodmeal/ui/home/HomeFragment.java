@@ -43,7 +43,7 @@ public class HomeFragment extends Fragment {
         make_dish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showToast("make dish pressed");
+//                showToast("make dish pressed");
                 Intent i = new Intent(getActivity(), MakeDishActivity.class);
                 startActivity(i);
             }
