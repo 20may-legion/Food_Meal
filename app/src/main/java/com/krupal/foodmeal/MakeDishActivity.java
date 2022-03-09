@@ -39,7 +39,7 @@ public class MakeDishActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     FirebaseUser current_user;
-    ArrayList<String> fruits_list, breads_list, dips_list, drinks_list, non_veg_list, vegetable_list;
+    ArrayList<String> fruits_list, breads_list, dips_list, drinks_list, non_veg_list, vegetable_list, choosen_items;
 
     @BindView(R.id.breads_item_RV)
     RecyclerView rv_breads_tiem;
@@ -93,6 +93,7 @@ public class MakeDishActivity extends AppCompatActivity {
         fruits_list = new ArrayList<>();
         non_veg_list = new ArrayList<>();
         vegetable_list = new ArrayList<>();
+        choosen_items = new ArrayList<>();
 
 
         firestore = FirebaseFirestore.getInstance();
@@ -109,7 +110,7 @@ public class MakeDishActivity extends AppCompatActivity {
         switch (adapter_number) {
             case 1: {
                 tv_breads_title.setText(title);
-                IngrediantsAdapter ingrediantsAdapter = new IngrediantsAdapter(getApplicationContext(), ingredients_list);
+                IngrediantsAdapter ingrediantsAdapter = new IngrediantsAdapter(getApplicationContext(), ingredients_list,choosen_items);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
                 rv_breads_tiem.setLayoutManager(linearLayoutManager);
                 rv_breads_tiem.setAdapter(ingrediantsAdapter);
@@ -118,7 +119,7 @@ public class MakeDishActivity extends AppCompatActivity {
             }
             case 2: {
                 tv_dips_title.setText(title);
-                IngrediantsAdapter ingrediantsAdapter = new IngrediantsAdapter(getApplicationContext(), ingredients_list);
+                IngrediantsAdapter ingrediantsAdapter = new IngrediantsAdapter(getApplicationContext(), ingredients_list,choosen_items);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
                 rv_dips_tiem.setLayoutManager(linearLayoutManager);
                 rv_dips_tiem.setAdapter(ingrediantsAdapter);
@@ -127,7 +128,7 @@ public class MakeDishActivity extends AppCompatActivity {
             }
             case 3: {
                 tv_drinks_title.setText(title);
-                IngrediantsAdapter ingrediantsAdapter = new IngrediantsAdapter(getApplicationContext(), ingredients_list);
+                IngrediantsAdapter ingrediantsAdapter = new IngrediantsAdapter(getApplicationContext(), ingredients_list,choosen_items);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
                 rv_drinks_tiem.setLayoutManager(linearLayoutManager);
                 rv_drinks_tiem.setAdapter(ingrediantsAdapter);
@@ -136,7 +137,7 @@ public class MakeDishActivity extends AppCompatActivity {
             }
             case 4: {
                 tv_fruits_title.setText(title);
-                IngrediantsAdapter ingrediantsAdapter = new IngrediantsAdapter(getApplicationContext(), ingredients_list);
+                IngrediantsAdapter ingrediantsAdapter = new IngrediantsAdapter(getApplicationContext(), ingredients_list,choosen_items);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
                 rv_fruits_tiem.setLayoutManager(linearLayoutManager);
                 rv_fruits_tiem.setAdapter(ingrediantsAdapter);
@@ -145,7 +146,7 @@ public class MakeDishActivity extends AppCompatActivity {
             }
             case 5: {
                 tv_nonveg_title.setText(title);
-                IngrediantsAdapter ingrediantsAdapter = new IngrediantsAdapter(getApplicationContext(), ingredients_list);
+                IngrediantsAdapter ingrediantsAdapter = new IngrediantsAdapter(getApplicationContext(), ingredients_list,choosen_items);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
                 rv_nonveg_tiem.setLayoutManager(linearLayoutManager);
                 rv_nonveg_tiem.setAdapter(ingrediantsAdapter);
@@ -154,7 +155,7 @@ public class MakeDishActivity extends AppCompatActivity {
             }
             case 6: {
                 tv_vegetable_title.setText(title);
-                IngrediantsAdapter ingrediantsAdapter = new IngrediantsAdapter(getApplicationContext(), ingredients_list);
+                IngrediantsAdapter ingrediantsAdapter = new IngrediantsAdapter(getApplicationContext(), ingredients_list,choosen_items);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
                 rv_vegetable_tiem.setLayoutManager(linearLayoutManager);
                 rv_vegetable_tiem.setAdapter(ingrediantsAdapter);
@@ -260,13 +261,14 @@ public class MakeDishActivity extends AppCompatActivity {
                             }
                         }
                     });
-            docref = firestore.collection("Ingredients").document("non_veges");
+            docref = firestore.collection("Ingredients").document("non veges");
             docref.get()
                     .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                             if (task.isSuccessful()) {
                                 DocumentSnapshot document = task.getResult();
+                                System.out.println("document"+document.getData() );
                                 System.out.println(document.getId() + " => " + document.getData());
                                 for (int i = 1; i <= Objects.requireNonNull(document.getData()).size(); i++) {
                                     non_veg_list.add(document.getString(String.valueOf(i)));
@@ -288,7 +290,8 @@ public class MakeDishActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 DocumentSnapshot document = task.getResult();
                                 System.out.println(document.getId() + " => " + document.getData());
-                                for (int i = 1; i <= Objects.requireNonNull(document.getData()).size(); i++) {
+                                System.out.println("document"+document.getData() );
+                                for (int i = 1; i <= (document.getData()).size(); i++) {
                                     vegetable_list.add(document.getString(String.valueOf(i)));
                                 }
                                 //                                System.out.println("arraylist " + fruits_list.toString());

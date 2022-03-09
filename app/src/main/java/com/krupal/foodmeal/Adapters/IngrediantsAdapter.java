@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatCheckBox;
@@ -20,10 +21,11 @@ import butterknife.ButterKnife;
 public class IngrediantsAdapter extends RecyclerView.Adapter<IngrediantsAdapter.ViewHolder> {
     private Context context;
     ArrayList<String> ingrediants_items;
-
-    public IngrediantsAdapter(Context context, ArrayList<String> ingrediants_items) {
+    ArrayList<String> choosen_items;
+    public IngrediantsAdapter(Context context, ArrayList<String> ingrediants_items,ArrayList<String> choosen_items) {
         this.context = context;
         this.ingrediants_items = ingrediants_items;
+        this.choosen_items =choosen_items;
     }
 
     @NonNull
@@ -36,6 +38,14 @@ public class IngrediantsAdapter extends RecyclerView.Adapter<IngrediantsAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.ingredient_tv.setText(ingrediants_items.get(position));
+        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    choosen_items.add(ingrediants_items.get(position));
+                System.out.println("item listSSS"+choosen_items.toString());
+            }
+        });
 
     }
 

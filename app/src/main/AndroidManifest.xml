@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodMeal">
         <activity
+            android:name=".ResutOfRecipes"
+            android:exported="false" />
+        <activity
             android:name=".MakeDishActivity"
             android:exported="false" />
         <activity
