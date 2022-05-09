@@ -54,7 +54,6 @@ public class login_Fragment extends Fragment {
 
     // TODO: Rename and change types and number of parameters
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -51,6 +51,7 @@
             android:paddingVertical="10dp"
             android:text="Explore Recipes"
             android:textAllCaps="false"
+            android:visibility="gone"
             android:textColor="@color/white_text"
             android:textSize="25sp"
             app:cornerRadius="20dp" />

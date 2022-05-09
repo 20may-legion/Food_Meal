@@ -6,9 +6,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +43,9 @@ public class MakeDishActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     FirebaseUser current_user;
     ArrayList<String> fruits_list, breads_list, dips_list, drinks_list, non_veg_list, vegetable_list, choosen_items;
+
+    @BindView(R.id.find_dishes_BT)
+    Button bt_find_dishes;
 
     @BindView(R.id.breads_item_RV)
     RecyclerView rv_breads_tiem;
@@ -102,7 +108,16 @@ public class MakeDishActivity extends AppCompatActivity {
         pd = new ProgressDialog(MakeDishActivity.this);
         new getDataFromDatabase().execute();
 
-
+        bt_find_dishes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),ResutOfRecipes.class);
+                Bundle args = new Bundle();
+                args.putSerializable("choosenIngredients",choosen_items);
+                i.putExtra("selected ingredients",args );
+                startActivity(i);
+            }
+        });
     }
 
 

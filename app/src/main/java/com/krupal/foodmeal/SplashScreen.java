@@ -23,8 +23,8 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 //todo remove home activity from splash
-//                Intent i=new Intent(SplashScreen.this, Authentication.class);
-                Intent i = new Intent(SplashScreen.this , HomeActivity.class);
+                Intent i=new Intent(SplashScreen.this, Authentication.class);
+//                Intent i = new Intent(SplashScreen.this , HomeActivity.class);
                 startActivity(i);
                 finish();
             }

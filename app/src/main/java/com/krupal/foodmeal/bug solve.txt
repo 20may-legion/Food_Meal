@@ -1,0 +1,14 @@
+ShowRecipe.java file
+    line number 75 - remove //
+    line number 78 - remove //
+    line number 85 - remove //
+    line number 88- remove //
+
+
+ShowRecipe.java file
+    line number 100
+        in code
+             DocumentReference docref = firestore.collection("Recipe").document("pizza");
+                replace "pizza" wit Dish_name
+
+

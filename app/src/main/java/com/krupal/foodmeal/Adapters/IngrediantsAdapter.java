@@ -22,16 +22,17 @@ public class IngrediantsAdapter extends RecyclerView.Adapter<IngrediantsAdapter.
     private Context context;
     ArrayList<String> ingrediants_items;
     ArrayList<String> choosen_items;
-    public IngrediantsAdapter(Context context, ArrayList<String> ingrediants_items,ArrayList<String> choosen_items) {
+
+    public IngrediantsAdapter(Context context, ArrayList<String> ingrediants_items, ArrayList<String> choosen_items) {
         this.context = context;
         this.ingrediants_items = ingrediants_items;
-        this.choosen_items =choosen_items;
+        this.choosen_items = choosen_items;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.ingrediants_adapter,parent,false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.ingrediants_adapter, parent, false);
         return new ViewHolder(itemView);
     }
 
@@ -41,9 +42,15 @@ public class IngrediantsAdapter extends RecyclerView.Adapter<IngrediantsAdapter.
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 if (isChecked)
                     choosen_items.add(ingrediants_items.get(position));
-                System.out.println("item listSSS"+choosen_items.toString());
+                else {
+                    if (choosen_items.contains(ingrediants_items.get(position)))
+                        choosen_items.remove(ingrediants_items.get(position));
+                }
+
+                System.out.println("item listSSS" + choosen_items.toString());
             }
         });
 
@@ -53,7 +60,8 @@ public class IngrediantsAdapter extends RecyclerView.Adapter<IngrediantsAdapter.
     public int getItemCount() {
         return ingrediants_items.size();
     }
-    public class ViewHolder extends RecyclerView.ViewHolder{
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.ingredient_CB)
         AppCompatCheckBox checkBox;
         @BindView(R.id.ingredient_TV)
@@ -62,7 +70,7 @@ public class IngrediantsAdapter extends RecyclerView.Adapter<IngrediantsAdapter.
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 }
